@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Запуск MCP Inspector против Claudegram-сервера.
+# Доступен как `claudegram-dev` в PATH Bash tool, пока плагин включён.
+# Можно и руками: `bash <plugin-root>/bin/claudegram-dev`.
+set -euo pipefail
+
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+
+if ! command -v uv >/dev/null 2>&1; then
+  echo "❌ uv не найден в PATH. Установи: https://docs.astral.sh/uv/" >&2
+  exit 1
+fi
+
+cd "$PLUGIN_ROOT"
+exec uv run claudegram-dev "$@"

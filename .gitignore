@@ -1,0 +1,48 @@
+# Secrets / runtime data — никогда не коммитим
+.env
+.env.*
+!.env.example
+*.session
+*.session-journal
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+.venv/
+.uv/
+dist/
+build/
+*.egg-info/
+*.egg
+wheels/
+
+# Test/lint caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.tox/
+.nox/
+htmlcov/
+coverage.xml
+.coverage
+.coverage.*
+.hypothesis/
+
+# IDE / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local Claude Code state (общее правило: не публикуем personal settings)
+.claude/settings.local.json

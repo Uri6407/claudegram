@@ -1,0 +1,74 @@
+name: Bug report
+description: Что-то сломалось или работает не так, как описано
+title: "[bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за репорт! Перед отправкой — пожалуйста, убедись, что не раскрываешь
+        `api_hash`, `2fa_password`, содержимое `*.session` или приватные сообщения.
+  - type: input
+    id: claudegram-version
+    attributes:
+      label: Claudegram version
+      description: Из `plugin.json` или `pyproject.toml` (`version`).
+      placeholder: "1.1.0"
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "3.14.0"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: "macOS 15.2 / Ubuntu 24.04 / Windows 11"
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - tools-only (CLAUDEGRAM_CHANNEL_MODE=0)
+        - channel push (CLAUDEGRAM_CHANNEL_MODE=1)
+        - both
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Что произошло
+      description: Опиши проблему и ожидаемое поведение.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Шаги к воспроизведению
+      placeholder: |
+        1. Запустил `uv run claudegram-auth`
+        2. Вызвал tool `mcp__plugin_claudegram_claudegram__send_message`
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Логи / трассировка
+      description: Не вставляй секреты. Если необходимо — отредактируй.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Чек-лист
+      options:
+        - label: Я не вставил `api_hash`, `2fa_password` или содержимое `*.session`
+          required: true
+        - label: Я искал в существующих issues
+          required: true

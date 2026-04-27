@@ -1,0 +1,143 @@
+{
+  "name": "claudegram",
+  "displayName": "Claudegram — Telegram через MTProto",
+  "version": "1.1.0",
+  "description": "Управление личным Telegram-аккаунтом из Claude Code через MTProto (Telethon). 120 tools, 9 resources, 6 templates, 7 prompts, completion handler, channel push, permission relay.",
+  "author": {
+    "name": "sanjar",
+    "email": "sanjar68x@gmail.com",
+    "url": "https://github.com/sanjar-x"
+  },
+  "homepage": "https://github.com/sanjar-x/claudegram",
+  "repository": "https://github.com/sanjar-x/claudegram",
+  "documentation": "https://github.com/sanjar-x/claudegram#readme",
+  "bugs": "https://github.com/sanjar-x/claudegram/issues",
+  "changelog": "https://github.com/sanjar-x/claudegram/blob/main/CHANGELOG.md",
+  "keywords": [
+    "telegram",
+    "mtproto",
+    "telethon",
+    "messaging",
+    "automation",
+    "mcp",
+    "claude-code"
+  ],
+  "license": "MIT",
+  "category": "messaging",
+  "commands": "./commands",
+  "skills": "./skills",
+  "mcpServers": "./.claude-plugin/.mcp.json",
+  "permissions": {
+    "allow": [
+      "mcp__plugin_claudegram_claudegram__health_check",
+      "mcp__plugin_claudegram_claudegram__get_server_version",
+      "mcp__plugin_claudegram_claudegram__get_me",
+      "mcp__plugin_claudegram_claudegram__get_full_user",
+      "mcp__plugin_claudegram_claudegram__get_chat_info",
+      "mcp__plugin_claudegram_claudegram__resolve_username",
+      "mcp__plugin_claudegram_claudegram__list_chats",
+      "mcp__plugin_claudegram_claudegram__list_channels",
+      "mcp__plugin_claudegram_claudegram__list_groups",
+      "mcp__plugin_claudegram_claudegram__list_bots",
+      "mcp__plugin_claudegram_claudegram__list_pm_users",
+      "mcp__plugin_claudegram_claudegram__dialog_stats",
+      "mcp__plugin_claudegram_claudegram__get_dialogs_by_ids",
+      "mcp__plugin_claudegram_claudegram__get_drafts",
+      "mcp__plugin_claudegram_claudegram__get_history",
+      "mcp__plugin_claudegram_claudegram__get_history_with_links",
+      "mcp__plugin_claudegram_claudegram__search_messages",
+      "mcp__plugin_claudegram_claudegram__search_global",
+      "mcp__plugin_claudegram_claudegram__get_top_peers",
+      "mcp__plugin_claudegram_claudegram__get_contacts",
+      "mcp__plugin_claudegram_claudegram__get_blocked",
+      "mcp__plugin_claudegram_claudegram__get_participants",
+      "mcp__plugin_claudegram_claudegram__get_admin_log",
+      "mcp__plugin_claudegram_claudegram__get_stats",
+      "mcp__plugin_claudegram_claudegram__get_profile_photos",
+      "mcp__plugin_claudegram_claudegram__download_profile_photo",
+      "mcp__plugin_claudegram_claudegram__get_common_chats",
+      "mcp__plugin_claudegram_claudegram__get_media_info",
+      "mcp__plugin_claudegram_claudegram__download_media",
+      "mcp__plugin_claudegram_claudegram__get_input_peer",
+      "mcp__plugin_claudegram_claudegram__get_authorizations",
+      "mcp__plugin_claudegram_claudegram__get_privacy",
+      "mcp__plugin_claudegram_claudegram__get_password_info",
+      "mcp__plugin_claudegram_claudegram__get_dialog_filters",
+      "mcp__plugin_claudegram_claudegram__get_scheduled_messages",
+      "mcp__plugin_claudegram_claudegram__get_stars_balance",
+      "mcp__plugin_claudegram_claudegram__get_stars_transactions",
+      "mcp__plugin_claudegram_claudegram__get_premium_promo",
+      "mcp__plugin_claudegram_claudegram__get_telegram_config",
+      "mcp__plugin_claudegram_claudegram__get_app_config",
+      "mcp__plugin_claudegram_claudegram__get_nearest_dc",
+      "mcp__plugin_claudegram_claudegram__get_countries_list",
+      "mcp__plugin_claudegram_claudegram__auth_request_code",
+      "mcp__plugin_claudegram_claudegram__auth_submit_code",
+      "mcp__plugin_claudegram_claudegram__auth_cancel",
+      "mcp__plugin_claudegram_claudegram__send_message",
+      "mcp__plugin_claudegram_claudegram__edit_message",
+      "mcp__plugin_claudegram_claudegram__forward_message",
+      "mcp__plugin_claudegram_claudegram__send_file",
+      "mcp__plugin_claudegram_claudegram__send_album",
+      "mcp__plugin_claudegram_claudegram__send_voice",
+      "mcp__plugin_claudegram_claudegram__send_video_note",
+      "mcp__plugin_claudegram_claudegram__send_poll",
+      "mcp__plugin_claudegram_claudegram__send_dice",
+      "mcp__plugin_claudegram_claudegram__send_location",
+      "mcp__plugin_claudegram_claudegram__send_contact",
+      "mcp__plugin_claudegram_claudegram__pin_message",
+      "mcp__plugin_claudegram_claudegram__react_message",
+      "mcp__plugin_claudegram_claudegram__mark_read"
+    ],
+    "ask": [
+
+    ],
+    "deny": []
+  },
+  "userConfig": {
+    "tg_api_id": {
+      "type": "number",
+      "title": "Telegram API ID",
+      "description": "api_id с https://my.telegram.org → API development tools",
+      "required": true
+    },
+    "tg_api_hash": {
+      "type": "string",
+      "title": "Telegram API hash",
+      "description": "api_hash с https://my.telegram.org → API development tools",
+      "required": true,
+      "sensitive": true
+    },
+    "tg_phone": {
+      "type": "string",
+      "title": "Номер телефона",
+      "description": "В международном формате, например +79991234567",
+      "required": true,
+      "sensitive": true
+    },
+    "tg_session_name": {
+      "type": "string",
+      "title": "Имя session-файла (без .session)",
+      "description": "Telethon сам добавит .session — указывай только базу. Файл окажется в CLAUDE_PLUGIN_DATA/<имя>.session. Если введёшь с расширением, оно будет отрезано автоматически.",
+      "default": "claudegram"
+    },
+    "tg_2fa_password": {
+      "type": "string",
+      "title": "Пароль 2FA (опционально)",
+      "description": "Только если включён облачный пароль. Можно оставить пустым — auth-скрипт спросит интерактивно.",
+      "sensitive": true
+    },
+    "tg_allowed_sender_ids": {
+      "type": "string",
+      "title": "Allowlist sender_ids для channel-режима",
+      "description": "Через запятую — Telegram user_id, которым разрешено пушить сообщения в Claude как channel-события. Пустое = только себе. Узнать id: спроси @userinfobot или вызови mcp__plugin_claudegram_claudegram__get_me.",
+      "default": ""
+    },
+    "enable_channel_mode": {
+      "type": "string",
+      "title": "Включить channel-режим (push входящих)",
+      "description": "Если '1' — сервер слушает входящие Telegram-сообщения и пушит в Claude как <channel> теги. Требует --channels plugin:claudegram@claudegram-local. Если '0' — обычный tools-only MCP без push.",
+      "default": "0"
+    }
+  }
+}

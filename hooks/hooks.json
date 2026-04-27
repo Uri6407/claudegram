@@ -1,0 +1,85 @@
+{
+  "description": "Auth-check + safety-гейты + observability для Claudegram.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-auth.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/session-end.sh\"",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/pre-compact.sh\"",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/notification.sh\"",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "mcp__plugin_claudegram_claudegram__delete_message",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-delete.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__plugin_claudegram_claudegram__(ban_participant|kick_participant|terminate_authorization|leave_chat|delete_dialog|delete_forum_topic|delete_stories|delete_scheduled|demote_admin|block_user)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-destructive.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__plugin_claudegram_claudegram__(invoke_raw|set_privacy|update_username|edit_chat_title|edit_chat_about|edit_chat_photo|toggle_forum_mode)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-confirm.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

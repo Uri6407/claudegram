@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Обёртка для одноразового интерактивного логина в Telegram.
+# Доступна как `claudegram-auth` в PATH, пока плагин включён в Claude Code.
+# Также можно запускать руками: `bash <plugin-root>/bin/claudegram-auth`.
+set -euo pipefail
+
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+
+if ! command -v uv >/dev/null 2>&1; then
+  echo "❌ uv не найден в PATH. Установи: https://docs.astral.sh/uv/" >&2
+  exit 1
+fi
+
+cd "$PLUGIN_ROOT"
+exec uv run python -m server.auth "$@"

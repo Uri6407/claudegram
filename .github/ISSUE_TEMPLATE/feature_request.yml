@@ -1,0 +1,28 @@
+name: Feature request
+description: Предложить новый tool / skill / hook / возможность
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какую задачу решаем
+      description: Что не получается сделать сейчас или что неудобно.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предлагаемое решение
+      description: Tool / skill / hook / изменение API. Если есть Telethon-метод — приложи ссылку.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы
+  - type: textarea
+    id: risk
+    attributes:
+      label: Риски / safety
+      description: Деструктивный? Нужен ли guard hook? Может ли использовать prompt injection?

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report (private)
+    url: https://github.com/sanjar-x/claudegram/security/advisories/new
+    about: Сообщи об уязвимости приватно через GitHub Security Advisory.
+  - name: Discussions
+    url: https://github.com/sanjar-x/claudegram/discussions
+    about: Вопросы, идеи, общий feedback — не баги.

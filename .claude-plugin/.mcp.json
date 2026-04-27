@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "claudegram": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "${CLAUDE_PLUGIN_ROOT}",
+        "run",
+        "python",
+        "-m",
+        "server.main"
+      ],
+      "cwd": "${CLAUDE_PLUGIN_ROOT}",
+      "env": {
+        "TG_API_ID": "${user_config.tg_api_id}",
+        "TG_API_HASH": "${user_config.tg_api_hash}",
+        "TG_PHONE": "${user_config.tg_phone}",
+        "TG_SESSION_NAME": "${user_config.tg_session_name}",
+        "TG_2FA_PASSWORD": "${user_config.tg_2fa_password}",
+        "TG_ALLOWED_SENDER_IDS": "${user_config.tg_allowed_sender_ids}",
+        "CLAUDEGRAM_DATA_DIR": "${CLAUDE_PLUGIN_DATA}",
+        "CLAUDEGRAM_CHANNEL_MODE": "${user_config.enable_channel_mode}"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "claudegram-local",
+  "owner": {
+    "name": "sanjar",
+    "email": "sanjar68x@gmail.com",
+    "url": "https://github.com/sanjar-x"
+  },
+  "metadata": {
+    "description": "Локальный marketplace из одного плагина — claudegram (управление Telegram через MTProto).",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "claudegram",
+      "source": "./",
+      "description": "Управление личным Telegram-аккаунтом из Claude Code через MTProto (Telethon). 120 tools, 9 resources, 6 templates, 7 prompts, completions, channel push, structured output, production-ready.",
+      "version": "1.1.0",
+      "author": {
+        "name": "sanjar",
+        "email": "sanjar68x@gmail.com"
+      },
+      "homepage": "https://github.com/sanjar-x/claudegram",
+      "repository": "https://github.com/sanjar-x/claudegram",
+      "license": "MIT",
+      "category": "messaging",
+      "keywords": [
+        "telegram",
+        "mtproto",
+        "telethon",
+        "messaging",
+        "automation",
+        "mcp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Default: всё ревьюит owner репо.
+*       @sanjar
+
+# Безопасность-чувствительные точки требуют явного approve.
+/.github/                 @sanjar
+/SECURITY.md              @sanjar
+/hooks/                   @sanjar
+/server/middleware.py     @sanjar
+/server/auth.py           @sanjar

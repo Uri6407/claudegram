@@ -1,0 +1,138 @@
+[project]
+name = "claudegram"
+version = "1.1.0"
+description = "Управление личным Telegram-аккаунтом из Claude Code через MTProto (Telethon). 120 tools, 9 resources, 6 templates, 7 prompts, completions, channel push, permission relay, structured output, production-ready."
+readme = "README.md"
+requires-python = ">=3.14"
+license = "MIT"
+license-files = ["LICENSE*"]
+authors = [{ name = "sanjar", email = "sanjar68x@gmail.com" }]
+maintainers = [{ name = "sanjar", email = "sanjar68x@gmail.com" }]
+keywords = [
+    "claude-code",
+    "claude-code-plugin",
+    "mcp",
+    "mcp-server",
+    "fastmcp",
+    "telegram",
+    "mtproto",
+    "telethon",
+    "messaging",
+    "automation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Communications :: Chat",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dependencies = [
+    "mcp[cli]>=1.27.0",
+    "python-dotenv>=1.2.2",
+    "telethon>=1.43.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/sanjar-x/claudegram"
+Repository = "https://github.com/sanjar-x/claudegram"
+Documentation = "https://github.com/sanjar-x/claudegram#readme"
+Changelog = "https://github.com/sanjar-x/claudegram/blob/main/CHANGELOG.md"
+Issues = "https://github.com/sanjar-x/claudegram/issues"
+"Security Policy" = "https://github.com/sanjar-x/claudegram/blob/main/SECURITY.md"
+
+[project.scripts]
+claudegram = "server.main:run"
+claudegram-auth = "server.auth:cli"
+claudegram-dev = "server.devtools:run_dev"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["server"]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20.2",
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.3.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.12",
+]
+
+# ─── Ruff ────────────────────────────────────────────────────────────────────
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+src = ["server", "tests"]
+exclude = [".venv", "__pycache__", "build", "dist"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # bugbear
+    "UP",  # pyupgrade
+    "RUF", # ruff-specific
+]
+ignore = [
+    "E501",   # line-too-long — мы выставили 100, но docstrings могут быть длиннее
+    "B008",   # function-call-in-default-argument — нужно для FastMCP параметров
+    "RUF001", # ambiguous-unicode-character-string — у нас русские docstrings
+    "RUF002", # ambiguous-unicode-character-docstring
+    "RUF003", # ambiguous-unicode-character-comment
+    "UP007",  # use X | Y instead of Optional/Union — частично уже сделано
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]  # assert False ok in tests
+
+# ─── Mypy ────────────────────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.14"
+strict = false  # включён частично, full strict для tests
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true  # telethon без stubs
+exclude = ["build/", "dist/", ".venv/"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+# ─── Pytest ──────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = [
+    "--strict-markers",
+    "--tb=short",
+    "-ra",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:telethon.*",
+]
+
+[tool.coverage.run]
+source = ["server"]
+omit = ["server/auth.py"]  # interactive — отдельные интеграционные тесты
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
